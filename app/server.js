@@ -1,6 +1,8 @@
 const fetch = require('node-fetch');
 require('dotenv').config();
 
+//  TODO move functions to other files + code cleanup + finish discription
+
 displaySheduleShows(['NPO 1 HD', 'RTL 4 HD']);
 
 // @param names to show information about array
@@ -15,12 +17,20 @@ function displaySheduleShows(names) {
                 // Loop through all the programs on schedule
                 shedulesInformation.forEach((scheduleInfo) => {
                     // Display information Here
-                    console.log(scheduleInfo);
+                    console.log('==BEGIN==');
+                    console.log(
+                        `${new Date(scheduleInfo.s).toLocaleString('nl-NL')} - ${new Date(
+                            scheduleInfo.e,
+                        ).toLocaleString('nl-NL')}\n${scheduleInfo.t}\n${scheduleInfo.p.description}`,
+                    );
+                    console.log('==EIND==');
                 });
             });
         });
     });
 }
+
+// MOVE TO CONTROLLER FILE
 
 function getScheduleWithInformation(programId) {
     return fetch('https://replatore.com', {
@@ -38,6 +48,7 @@ function getScheduleWithInformation(programId) {
                 p{ 
                     title 
                     description 
+                    categories
                 }}}`,
         }),
     })
