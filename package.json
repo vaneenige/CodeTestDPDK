@@ -17,7 +17,7 @@
     },
     "homepage": "https://github.com/RoelVoordendag/CodeTestDPDK#readme",
     "dependencies": {
-        "graphql": "^15.5.0",
+        "dotenv": "^8.2.0",
         "node-fetch": "^2.6.1"
     }
 }
