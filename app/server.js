@@ -18,7 +18,7 @@ function getIdshows(names) {
         body: JSON.stringify({query: getQueryChannels(names)}),
     })
         .then((response) => response.json())
-        .then((data) => console.log(data.data.))
+        .then((data) => console.log(data.data))
         .catch((error) => console.log(error));
 }
 
