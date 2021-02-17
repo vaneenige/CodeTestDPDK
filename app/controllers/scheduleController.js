@@ -1,6 +1,6 @@
 const fetch = require('node-fetch');
 
-// Get array with show information back
+// Get array with schedule from show based on id information back
 // @param id of the show
 // returns array with information about show on the channal
 exports.getScheduleInformation = (programId) => {
@@ -12,7 +12,7 @@ exports.getScheduleInformation = (programId) => {
             Accept: 'application/json',
         },
         body: JSON.stringify({
-            query: `{schedules(filter:{o: "${programId}"}, limit:10){
+            query: `{schedules(filter:{o: "${programId}", _operators :{s : {lt : 161021791300000}}} ){
                 t 
                 s 
                 e 

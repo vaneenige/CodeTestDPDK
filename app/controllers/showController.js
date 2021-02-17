@@ -1,7 +1,7 @@
 const fetch = require('node-fetch');
 
 // Function that returns id and name of the shows you want
-// @param names is array with name of the show
+// @param names is array with name of the show to search on
 // Returns arrays with id's and name
 exports.getShowInformation = (names) => {
     return fetch('https://replatore.com', {
@@ -25,14 +25,10 @@ exports.getShowInformation = (names) => {
 // @param names is array with id
 // Returns filter for graqhql query
 function getQueryChannels(names, filternames = '') {
-    if (names.length == 1) {
-        return `{channel(filter: {title : "${names[0]}"}){epgId, title}}`;
-    } else {
-        // Build query for different show names to get mutiple id's
-        names.forEach((name) => {
-            filternames = filternames + `{title: "${name}"},`;
-        });
+    // Build query for different show names to get mutiple id's
+    names.forEach((name) => {
+        filternames = filternames + `{title: "${name}"},`;
+    });
 
-        return `{channels(filter: {OR: [${filternames}]}){epgId, title}}`;
-    }
+    return `{channels(filter: {OR: [${filternames}]}){epgId, title}}`;
 }

@@ -15,14 +15,23 @@ showController.getShowInformation(shows).then((showObjects) => {
             // Loop through all the programs on schedule
             shedulesInformation.forEach((scheduleInfo) => {
                 // Display information Here
-                console.log('==BEGIN==');
-                console.log(
-                    `${new Date(scheduleInfo.s).toLocaleString('nl-NL')} - ${new Date(scheduleInfo.e).toLocaleString(
-                        'nl-NL',
-                    )}\n${scheduleInfo.t}\n${scheduleInfo.p.description}`,
-                );
-                console.log('==EIND==');
+                console.log('==BEGIN programma Informatie==');
+                console.log(`${formatDate(scheduleInfo.s)} - ${formatDate(scheduleInfo.e)}\n${scheduleInfo.t} (${getDesriptionTags(scheduleInfo.p.categories)})\n${scheduleInfo.p.description}`);
+                console.log('==EIND programma Informatie==');
             });
         });
     });
 });
+
+// return description tags
+function getDesriptionTags(descriptionArray) {
+    return descriptionArray.map((e) => {
+        return e.title;
+    });
+}
+
+// Reformats unix time
+function formatDate(dateTime) {
+    dateTime = new Date(dateTime);
+    return `${dateTime.toLocaleString('nl-nl', {weekday: 'long'})} ${dateTime.getDate()} ${dateTime.toLocaleString('nl-nl', {month: 'long'})} ${dateTime.getFullYear()} ${dateTime.toLocaleTimeString('nl-nl', {hour12: false})}`;
+}
