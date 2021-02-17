@@ -15,5 +15,8 @@
     "bugs": {
         "url": "https://github.com/RoelVoordendag/CodeTestDPDK/issues"
     },
-    "homepage": "https://github.com/RoelVoordendag/CodeTestDPDK#readme"
+    "homepage": "https://github.com/RoelVoordendag/CodeTestDPDK#readme",
+    "dependencies": {
+        "graphql": "^15.5.0"
+    }
 }
