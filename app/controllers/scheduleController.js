@@ -1,9 +1,9 @@
 const fetch = require('node-fetch');
 
-// Get array with schedule from show based on id information back
-// @param id of the show
+// Get array with schedules and program information from show based on id of channel
+// @param id of the channel
 // returns array with information about show on the channal
-exports.getScheduleInformation = (programId) => {
+exports.getScheduleInformation = (channelId) => {
     return fetch('https://replatore.com', {
         method: 'POST',
         headers: {
@@ -12,7 +12,7 @@ exports.getScheduleInformation = (programId) => {
             Accept: 'application/json',
         },
         body: JSON.stringify({
-            query: `{schedules(filter:{o: "${programId}", _operators :{s : {lt : 161021791300000}}} ){
+            query: `{schedules(filter:{o: "${channelId}", _operators :{s : {lt : 161021791300000}}} ){
                 t 
                 s 
                 e 

@@ -1,20 +1,19 @@
-const showController = require('./controllers/showController');
+const showController = require('./controllers/channelController');
 const scheduleController = require('./controllers/scheduleController');
 require('dotenv').config();
 
-//  TODO move functions to other files + code cleanup + finish discription
-
+// Fill this array with the names and shows you want to see
 shows = ['NPO 1 HD', 'RTL 4 HD'];
 
-showController.getShowInformation(shows).then((showObjects) => {
+showController.getChannelInformation(shows).then((showObjects) => {
     // Loops through all the found spots
     showObjects.forEach((showObject) => {
-        // Log Title
         scheduleController.getScheduleInformation(showObject.epgId).then((shedulesInformation) => {
+            // Log Title
             console.log(`======= ${showObject.title} =======`);
             // Loop through all the programs on schedule
             shedulesInformation.forEach((scheduleInfo) => {
-                // Display information Here
+                // Display program information
                 console.log('==BEGIN programma Informatie==');
                 console.log(`${formatDate(scheduleInfo.s)} - ${formatDate(scheduleInfo.e)}\n${scheduleInfo.t} (${getDesriptionTags(scheduleInfo.p.categories)})\n${scheduleInfo.p.description}`);
                 console.log('==EIND programma Informatie==');

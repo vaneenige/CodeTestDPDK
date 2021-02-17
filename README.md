@@ -1,5 +1,8 @@
 # CodeTestDPDK
 
+## To run:
+node ./app/server.js
+
 DPDK code test
 
 TODO:
